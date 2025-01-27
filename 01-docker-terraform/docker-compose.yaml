@@ -1,0 +1,19 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    networks:
+      - pg_network
+    volumes:
+      - "./ny_taxi_postgres_data:/var/lib/postgresql/data"
+    ports:
+      - "15432:5432"
+
+networks:
+  pg_network:
+    name: "pg-network"

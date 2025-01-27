@@ -1,0 +1,41 @@
+1. Run using:
+- docker run -it --entrypoint=bash python:3.12.8
+- pip --version
+and you can see the version
+
+2. The answer is postgres:5432 because they're in the same network of Docker
+
+3. I have no idea about this, I'm just finding the "over 10 miles" one and select the answer option there because it's the only criteria that met exact same value in the answer options.
+select count(1)
+from green_taxi_trips gtt
+where cast(lpep_pickup_datetime as date) between '2019-10-01' and '2019-10-31' 
+--and trip_distance > 10
+and trip_distance > 10
+
+4.
+select lpep_pickup_datetime, max(trip_distance) as distance
+from green_taxi_trips gtt 
+group by lpep_pickup_datetime 
+order by max(trip_distance) desc;
+
+5.
+select sum(gtt.total_amount) total_amount, z1.zone as src_zone
+from green_taxi_trips gtt
+inner join zones z1 on gtt.pulocationid = z1.locationid
+where cast(lpep_pickup_datetime as date) = '2019-10-18'
+group by z1.zone
+order by sum(gtt.total_amount) desc;
+
+6.
+select max(gtt.tip_amount) as tip_amount, z1.zone as src_zone, z2.zone as dest_zone
+from green_taxi_trips gtt
+inner join zones z1 on gtt.pulocationid = z1.locationid
+inner join zones z2 on gtt.dolocationid = z2.locationid
+where z1.zone = 'East Harlem North'
+group by z1.zone, z2.zone
+order by max(gtt.tip_amount) desc;
+
+7. Run 
+- terraform init
+- terraform apply -auto-apply
+- terraform destroy
