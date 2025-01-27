@@ -35,3 +35,11 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+secret.json
+*.lock.hcl
+.ipynb_checkpoints
+ny_taxi_postgres_data
+example-commands.sh
+*.parquet
+*.DS_Store
