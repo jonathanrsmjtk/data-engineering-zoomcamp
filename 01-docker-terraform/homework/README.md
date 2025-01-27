@@ -2,7 +2,7 @@
 
 1. Run using
 
-```
+```bash
 docker run -it --entrypoint=bash python:3.12.8
 pip --version
 ```
@@ -11,7 +11,7 @@ and you can see the version, <b>24.3.1</b>
 2. The answer is <b>postgres:5432</b> because they're in the same network of Docker
 
 3. 
-```
+```sql
 with october_trips as (
 	select *
 	from green_taxi_trips gtt
@@ -30,7 +30,7 @@ select 'over 10 miles' as trip_group, count(1) from october_trips where trip_dis
 ```
 
 4.
-```
+```sql
 select lpep_pickup_datetime, max(trip_distance) as distance
 from green_taxi_trips gtt 
 group by lpep_pickup_datetime 
@@ -38,7 +38,7 @@ order by max(trip_distance) desc;
 ```
 
 5.
-```
+```sql
 select sum(gtt.total_amount) total_amount, z1.zone as src_zone
 from green_taxi_trips gtt
 inner join zones z1 on gtt.pulocationid = z1.locationid
@@ -48,7 +48,7 @@ order by sum(gtt.total_amount) desc;
 ```
 
 6.
-```
+```sql
 select max(gtt.tip_amount) as tip_amount, z1.zone as src_zone, z2.zone as dest_zone
 from green_taxi_trips gtt
 inner join zones z1 on gtt.pulocationid = z1.locationid
@@ -59,7 +59,7 @@ order by max(gtt.tip_amount) desc;
 ```
 
 7. Run 
-```
+```bash
 terraform init
 terraform apply -auto-apply
 terraform destroy
