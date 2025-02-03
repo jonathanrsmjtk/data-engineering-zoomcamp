@@ -43,3 +43,5 @@ ny_taxi_postgres_data
 example-commands.sh
 *.parquet
 *.DS_Store
+postgres-data
+kestra-data
